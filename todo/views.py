@@ -17,19 +17,27 @@ def todo_list(request):
 @login_required
 def add_todo(request):
     if request.method == 'POST':
-        title = request.POST['title']
-        Todo.objects.create(user=request.user, title=title)
-        return redirect('todo_list')
-    return render(request, 'todo/add_todo.html')
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            todo = form.save(commit=False)
+            todo.user = request.user
+            todo.save()
+            return redirect('todo_list')
+    else:
+        form = TodoForm()
+    return render(request, 'todo/add_todo.html', {'form': form})
 
 @login_required
 def edit_todo(request, todo_id):
-    todo = Todo.objects.get(id=todo_id, user=request.user)
+    todo = get_object_or_404(Todo, id=todo_id, user=request.user)
     if request.method == 'POST':
-        todo.title = request.POST['title']
-        todo.save()
-        return redirect('todo_list')
-    return render(request, 'todo/edit_todo.html', {'todo': todo})
+        form = TodoForm(request.POST, instance=todo)
+        if form.is_valid():
+            form.save()
+            return redirect('todo_list')
+    else:
+        form = TodoForm(instance=todo)
+    return render(request, 'todo/edit_todo.html', {'form': form})
 
 @login_required
 def delete_todo(request, todo_id):
