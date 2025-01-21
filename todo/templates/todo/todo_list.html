@@ -11,6 +11,7 @@
         <h5>{{ todo.title }}</h5>
         <p>{{ todo.description }}</p>
         <a href="{% url 'edit_todo' todo.pk %}" class="btn btn-sm btn-info">수정</a>
+        <a href="{% url 'delete_todo' todo.pk %}" class="btn btn-sm btn-danger">삭제</a>
     </li>
     {% endfor %}
 </ul>
@@ -22,6 +23,7 @@
         <h5>{{ todo.title }}</h5>
         <p>{{ todo.description }}</p>
         <a href="{% url 'edit_todo' todo.pk %}" class="btn btn-sm btn-info">수정</a>
+        <a href="{% url 'delete_todo' todo.pk %}" class="btn btn-sm btn-danger">삭제</a>
     </li>
     {% endfor %}
 </ul>
