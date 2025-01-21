@@ -10,4 +10,4 @@ if __name__ == "__main__":
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed?"
         ) from exc
-    execute_from_command_line(sys.argv) 
+    execute_from_command_line(sys.argv)

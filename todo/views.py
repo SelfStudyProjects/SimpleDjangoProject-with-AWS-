@@ -11,8 +11,12 @@ class TodoListView(ListView):
 
 @login_required
 def todo_list(request):
-    todos = Todo.objects.filter(user=request.user)
-    return render(request, 'todo/todo_list.html', {'todos': todos})
+    completed_todos = Todo.objects.filter(completed=True)
+    incomplete_todos = Todo.objects.filter(completed=False)
+    return render(request, 'todo/todo_list.html', {
+        'completed_todos': completed_todos,
+        'incomplete_todos': incomplete_todos,
+    })
 
 @login_required
 def add_todo(request):
