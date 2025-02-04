@@ -5,3 +5,6 @@
 
 ## 최종 결과물(gunicorn 시행 기준)
 ![image](https://github.com/user-attachments/assets/09ebda1c-da42-4bc3-9928-85b881a5a01d)
+
+## 최종 결과물(public IP만 접속했을 때 구동됨)
+![image](https://github.com/user-attachments/assets/389efbff-461f-40d8-b2bb-71f1d846aada)
